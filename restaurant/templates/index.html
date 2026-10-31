@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Lemon Restaurant</title>
+    <link rel="stylesheet" href="{% static 'restaurant/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Little Lemon</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/api/menu-items/">Menu API</a>
+            <a href="/restaurant/booking/tables/">Bookings API</a>
+            <a href="/auth/users/">Users</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Chicago</h2>
+        <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
+        <a href="/restaurant/booking/tables/" class="btn">Reserve a Table</a>
+    </section>
+
+    <div class="container">
+        <h2>Little Lemon Restaurant API Services</h2>
+        <p>Welcome to the Little Lemon API backend. Below are the available endpoints for inspection and testing:</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>🍽️ Menu API</h3>
+                <p>Browse full menu items, add new dishes, and inspect dish details.</p>
+                <a href="/api/menu-items/">Visit /api/menu-items/</a>
+            </div>
+            <div class="card">
+                <h3>📅 Table Booking API</h3>
+                <p>Reserve a table and manage bookings. Requires Token Authentication.</p>
+                <a href="/restaurant/booking/tables/">Visit /restaurant/booking/tables/</a>
+            </div>
+            <div class="card">
+                <h3>🔐 User Authentication</h3>
+                <p>Djoser registration and TokenAuthentication endpoints for API access.</p>
+                <a href="/auth/users/">Visit /auth/users/</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Little Lemon Restaurant. Back-End Developer Capstone Project.</p>
+    </footer>
+</body>
+</html>
