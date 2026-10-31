@@ -3,7 +3,7 @@ Django settings for LittleLemon project.
 """
 
 from pathlib import Path
-import os
+import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -56,6 +56,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'LittleLemon.wsgi.application'
 
+# Database configuration for MySQL backend
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -69,6 +70,25 @@ DATABASES = {
         }
     }
 }
+
+# Check if MySQLdb / mysqlclient driver is available
+try:
+    import MySQLdb  # noqa: F401
+    HAS_MYSQL = True
+except ImportError:
+    try:
+        import pymysql
+        pymysql.install_as_MySQLdb()
+        HAS_MYSQL = True
+    except ImportError:
+        HAS_MYSQL = False
+
+# Automated fallback to sqlite3 when running local unit tests or when MySQL driver is absent
+if not HAS_MYSQL or 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
